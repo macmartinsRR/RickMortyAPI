@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const config = require("./config");
 const setupController = require('./controllers/setupController');
 const apiController = require('./controllers/apiController');
+require("dotenv").config();
 
 const port = process.env.PORT || 3000;
 
