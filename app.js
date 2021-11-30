@@ -7,10 +7,9 @@ const setupController = require("./controllers/setupController");
 const apiController = require("./controllers/apiController");
 const cors = require("cors");
 
-app.use(cors());
-
 const port = process.env.PORT || 3000;
 
+app.use(cors());
 app.use("/assets", express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
 
