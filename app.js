@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require("express-session");
+const helmet = require("helmet");
+const compression = require("compression");
 
 const app = express();
 
@@ -18,6 +20,8 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(helmet());
+app.use(compression());
 app.use(session({ secret: "secret", resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());

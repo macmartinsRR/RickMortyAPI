@@ -1,14 +1,25 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
-const Users = require("../models/userModel");
 const passport = require("passport");
 const router = express.Router();
 
-router.post("/login", passport.authenticate("local"), function (req, res) {
-  res.json({ message: "Successfully logged in" });
-});
+const Users = require("../models/userModel");
+const { checkUserSchema } = require("../middleware");
 
-router.post("/", function (req, res) {
+router.post(
+  "/login",
+  checkUserSchema,
+  passport.authenticate("local", { failWithError: true }),
+  function (req, res) {
+    res.json({ message: "Successfully logged in" });
+  },
+  // Send error as json
+  function (err, req, res, next) {
+    return res.json(err);
+  }
+);
+
+router.post("/", checkUserSchema, function (req, res) {
   const { username, password } = req.body;
 
   Users.countDocuments({ username: username }, (err, count) => {

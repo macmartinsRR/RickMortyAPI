@@ -34,3 +34,5 @@ The application will then be listing on the localhost (by default port 3000).
 
 Afterwards you can call any available endpoint, like:
 http://localhost:3000/api/character
+
+This API is also available online: https://rickmorty-apirr.herokuapp.com/
