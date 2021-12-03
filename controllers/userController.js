@@ -36,4 +36,9 @@ router.post("/", function (req, res) {
   });
 });
 
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.json({ message: "Successfully logged out" });
+});
+
 module.exports = router;
